@@ -43,11 +43,13 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './component/login/login.component';
+import { SignupComponent } from './component/signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    SignupComponent,
 
     
   ],

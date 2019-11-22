@@ -8,12 +8,15 @@ import { AccountService } from 'src/app/service/account.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
+  constructor(public accountService: AccountService) { }
 
   ngOnInit() {
   }
 
+  login(username, password) {
+    
+    this.accountService.login(username, password);
+  }
 
 
 }

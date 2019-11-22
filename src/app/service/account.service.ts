@@ -4,6 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AccountService {
+  isLogin = false;
 
+  login(username, password) {
+    
+  }
   constructor() { }
 }
