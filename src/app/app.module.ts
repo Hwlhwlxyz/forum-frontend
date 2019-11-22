@@ -50,7 +50,6 @@ import { SignupComponent } from './component/signup/signup.component';
     AppComponent,
     LoginComponent,
     SignupComponent,
-
     
   ],
   imports: [

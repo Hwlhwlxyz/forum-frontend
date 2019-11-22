@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/service/account.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  constructor(public accountService: AccountService) { }
 
   ngOnInit() {
   }
 
+  signup(username, password, birth, description) {
+    if (username == "" || password == "" || birth == "" || description == "")
+      return;
+    this.accountService.createUser(username, password, birth, description);
+  }
 }
