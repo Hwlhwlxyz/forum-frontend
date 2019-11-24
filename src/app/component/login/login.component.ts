@@ -15,10 +15,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(username, password) {
-    if (username == "" || password == "")
-      return;
-    this.accountService.login(username, password);
+  login() {
+    
+    let r = this.accountService.login(this.username, this.password);
+    console.log(r);
+    return r;
   }
 
 

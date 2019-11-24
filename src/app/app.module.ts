@@ -44,18 +44,31 @@ import {MatTreeModule} from '@angular/material/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './component/login/login.component';
 import { SignupComponent } from './component/signup/signup.component';
+import { NavigatorComponent } from './navigator/navigator.component';
+import { TopicComponent } from './component/topic/topic.component';
+import { TopicDetailComponent } from './component/topic-detail/topic-detail.component';
+import { UserinfoComponent } from './component/user/userinfo/userinfo.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './component/admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
+    NavigatorComponent,
+    TopicComponent,
+    TopicDetailComponent,
+    UserinfoComponent,
+    DashboardComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+
+    HttpClientModule,
     //angular material
     FormsModule,
     ReactiveFormsModule,

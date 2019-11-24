@@ -14,8 +14,16 @@ export class SignupComponent implements OnInit {
   }
 
   signup(username, password, birth, description) {
+    console.log(username, password, birth, description)
     if (username == "" || password == "" || birth == "" || description == "")
       return;
-    this.accountService.createUser(username, password, birth, description);
+    this.accountService.createUser(username, password, birth, description).subscribe(
+      response => {
+        console.log(response)
+    },
+    err => {
+      console.log(err)
+    }
+    );
   }
 }
