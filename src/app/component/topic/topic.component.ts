@@ -1,6 +1,7 @@
 import { TopicService } from './../../service/topic.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { CreatetopicDialogComponent } from '../dialog/createtopic-dialog/createtopic-dialog.component';
 
 @Component({
   selector: 'app-topic',
@@ -20,7 +21,8 @@ export class TopicComponent implements OnInit {
 
   topics;
   
-  constructor(private topicService: TopicService) { }
+  constructor(private topicService: TopicService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -36,5 +38,12 @@ export class TopicComponent implements OnInit {
 
   toTopicDetail(data){
     console.log(data)
+  }
+
+  open_createtopicDialog(){
+    let dialogRef = this.dialog.open(CreatetopicDialogComponent,{
+      height: '400px',
+      width: '800px',
+    });
   }
 }

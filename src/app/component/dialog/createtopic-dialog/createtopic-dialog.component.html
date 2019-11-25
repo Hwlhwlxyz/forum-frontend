@@ -1,0 +1,44 @@
+
+
+<h1 mat-dialog-title> Create Topic </h1>
+<div mat-dialog-content>
+    
+      <mat-form-field>
+          <input matInput [(ngModel)]="title" placeholder="Title" name="title" required>
+      </mat-form-field>
+
+      <mat-form-field>
+          <textarea matInput [(ngModel)]="content" placeholder="Content" name="content" required></textarea>
+      </mat-form-field>
+    
+      <mat-chip-list #chipList aria-label="tags">
+        <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                 [removable]="removable" (removed)="remove(tag)">
+          {{tag}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="New tag..."
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event)">
+               <button mat-button color="primary">
+               <i align="left" class="material-icons"  (matChipInputTokenEnd)="add($event)">
+                add_circle_outline
+                </i>
+            </button>
+      </mat-chip-list>
+
+
+    </div>
+      <div mat-dialog-actions>
+   <button mat-button (click)="onNoClick()">cancel</button>
+        <button mat-raised-button type="submit" (click)="submit()" color="primary">Submit</button>
+   
+      </div>
+
+
+
+
+  
+

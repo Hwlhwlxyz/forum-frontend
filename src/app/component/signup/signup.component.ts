@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
       return;
     this.accountService.createUser(username, password, birth, description).subscribe(
       response => {
-        console.log(response)
+        console.log('succeed',response)
     },
     err => {
       console.log(err)

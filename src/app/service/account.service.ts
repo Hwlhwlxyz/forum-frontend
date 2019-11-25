@@ -18,6 +18,9 @@ export class AccountService {
   })
 };
 
+  getUserId(){
+    return "5ddaf4b182f0af34ac2ef6d4"
+  }
 
   getToken() {
     return this.token;
@@ -35,8 +38,9 @@ export class AccountService {
   }
 
   createUser(username, password, birth, description) {
-    const userData: UserData = {username: username, password: password, postNumber: 1, birth: birth, description: description};
-    return this.http.post(this.apiBaseURL+"/loginSignup/signup", userData)
+    const userData: UserData = {username: username, password: password,  birth: birth, description: description};
+    console.log(userData)
+    return this.http.post(this.apiBaseURL+"/loginSignup/signup", userData, this.httpOptions)
   }
 
 
@@ -50,7 +54,6 @@ export class AccountService {
 export class UserData {
   username: string;
   password: string;
-  postNumber: number;
   birth: Date;
   description: string;
 }

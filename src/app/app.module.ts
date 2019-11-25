@@ -50,6 +50,7 @@ import { TopicDetailComponent } from './component/topic-detail/topic-detail.comp
 import { UserinfoComponent } from './component/user/userinfo/userinfo.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './component/admin/dashboard/dashboard.component';
+import { CreatetopicDialogComponent } from './component/dialog/createtopic-dialog/createtopic-dialog.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { DashboardComponent } from './component/admin/dashboard/dashboard.compon
     TopicDetailComponent,
     UserinfoComponent,
     DashboardComponent,
+    CreatetopicDialogComponent,
     
   ],
   imports: [
@@ -109,6 +111,7 @@ import { DashboardComponent } from './component/admin/dashboard/dashboard.compon
     MatTreeModule,
   ],
   providers: [],
+  entryComponents: [CreatetopicDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
