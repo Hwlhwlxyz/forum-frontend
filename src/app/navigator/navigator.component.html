@@ -6,5 +6,6 @@
 <button mat-button [routerLink]="['/topics']">Topics</button>
 <button mat-button [routerLink]="['/userinfo']">Profile</button>
 
-
-<button style="float: right;" mat-button (click)="logout()">logout</button>
+<button *ngIf="!userIsAuth" mat-button [routerLink]="['/login']">Login</button>
+<button *ngIf="!userIsAuth" mat-button [routerLink]="['/Signup']">Signup</button>
+<button *ngIf="userIsAuth" style="float: right;" mat-button (click)="logout()">logout</button>

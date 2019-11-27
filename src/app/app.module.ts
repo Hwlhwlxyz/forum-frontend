@@ -48,9 +48,10 @@ import { NavigatorComponent } from './navigator/navigator.component';
 import { TopicComponent } from './component/topic/topic.component';
 import { TopicDetailComponent } from './component/topic-detail/topic-detail.component';
 import { UserinfoComponent } from './component/user/userinfo/userinfo.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashboardComponent } from './component/admin/dashboard/dashboard.component';
 import { CreatetopicDialogComponent } from './component/dialog/createtopic-dialog/createtopic-dialog.component';
+import { AccountInterceptor } from './service/account-interceptor';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,7 @@ import { CreatetopicDialogComponent } from './component/dialog/createtopic-dialo
     MatTooltipModule,
     MatTreeModule,
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AccountInterceptor, multi: true}],
   entryComponents: [CreatetopicDialogComponent],
   bootstrap: [AppComponent]
 })
