@@ -11,7 +11,8 @@ import { Router } from "@angular/router";
 })
 export class AccountService {
   private token: string;
-  private tokenTimer: NodeJS.Timer;
+  private tokenTimer: any;
+  private userId: string;
   private isAuth = false;
   private statusListener = new Subject<boolean>();
   public apiBaseURL = environment.apiBaseURL;
@@ -24,7 +25,7 @@ export class AccountService {
 };
 
   getUserId(){
-    return "5ddaf4b182f0af34ac2ef6d4"
+    return this.userId;
   }
 
   getToken() {
@@ -42,13 +43,14 @@ export class AccountService {
   login(username, password) {
     const loginData: LoginData = {username: username, password: password};
     console.log('logindata',loginData)
-    this.http.post<{token: string, expiresIn: number}>(this.apiBaseURL+"/loginSignup/login", loginData ).subscribe(response => {
+    this.http.post<{token: string, expiresIn: number, userId: string}>(this.apiBaseURL+"/loginSignup/login", loginData ).subscribe(response => {
       const token = response.token;
       this.token = token;
       if (token) {
         const expiresDuration = response.expiresIn;
         this.setTimer(expiresDuration);
         this.isAuth = true;
+        this.userId = response.userId;
         this.statusListener.next(true);
         const now = new Date();
         const expirationDate = new Date(now.getTime() + expiresDuration * 1000);
