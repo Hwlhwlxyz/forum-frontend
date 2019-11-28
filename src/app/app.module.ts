@@ -52,6 +52,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashboardComponent } from './component/admin/dashboard/dashboard.component';
 import { CreatetopicDialogComponent } from './component/dialog/createtopic-dialog/createtopic-dialog.component';
 import { AccountInterceptor } from './service/account-interceptor';
+import { CreatecommentDialogComponent } from './component/dialog/createcomment-dialog/createcomment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { AccountInterceptor } from './service/account-interceptor';
     UserinfoComponent,
     DashboardComponent,
     CreatetopicDialogComponent,
+    CreatecommentDialogComponent,
     
   ],
   imports: [
@@ -112,7 +114,7 @@ import { AccountInterceptor } from './service/account-interceptor';
     MatTreeModule,
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AccountInterceptor, multi: true}],
-  entryComponents: [CreatetopicDialogComponent],
+  entryComponents: [CreatetopicDialogComponent, CreatecommentDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

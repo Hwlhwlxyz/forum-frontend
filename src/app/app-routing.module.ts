@@ -8,10 +8,11 @@ import { SignupComponent } from './component/signup/signup.component';
 import { AccountGuard } from './service/account-guard';
 
 const routes: Routes = [
+  { path:'', component: LoginComponent},
   { path:'login', component: LoginComponent},
   { path:'signup', component: SignupComponent},
   { path:'topics', component: TopicComponent},
-  { path:'topicdetail', component: TopicDetailComponent},
+  { path:'topicdetail/:topicid', component: TopicDetailComponent},
   { path:'userinfo', component: UserinfoComponent}
 ];
 

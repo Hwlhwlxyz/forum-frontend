@@ -4,6 +4,3 @@
     flex-direction: column;
   }
 
-  .mat-dialog-content {
-    overflow-y: hidden !important;
-}

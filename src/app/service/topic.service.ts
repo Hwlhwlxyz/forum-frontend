@@ -18,11 +18,6 @@ export class TopicService {
     return this.http.get(this.topicsURL)
   }
 
-  getAllComments(topicid){
-    //return this.http.get<any>(this.apiBaseURL);
-    return [];
-  }
-
   createTopic(title, content, tags, images){
     let topicdata = {
       authorid: this.accountService.getUserId(),
@@ -31,6 +26,21 @@ export class TopicService {
       tags: tags,
       images: images
     }
-    return this.http.post(this.topicsURL, topicdata)
+    return this.http.post(this.topicsURL, topicdata);
+  }
+
+  getTopicById(topicid){
+    return this.http.get(this.topicsURL+'/'+topicid);
+  }
+
+  getTopicsByTag(tag){
+    return this.http.get(this.topicsURL+'/')
+  }
+
+  createComment(postid, content ){
+    let commentdata = {
+      content: content,
+    }
+    return this.http.post(this.topicsURL+"/"+postid+"/newComment", commentdata)
   }
 }

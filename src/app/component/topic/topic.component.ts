@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { TopicService } from './../../service/topic.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
@@ -22,7 +23,8 @@ export class TopicComponent implements OnInit {
   topics;
   
   constructor(private topicService: TopicService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private router:Router) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -37,6 +39,7 @@ export class TopicComponent implements OnInit {
   }
 
   toTopicDetail(data){
+    this.router.navigate(["/topicdetail",data['_id']])
     console.log(data)
   }
 

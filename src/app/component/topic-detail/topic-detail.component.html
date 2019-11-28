@@ -1,22 +1,29 @@
 <p>topic-detail works!</p>
 
+<h1>{{topicInfo.title}}</h1>
+<p>{{topicInfo.author}}</p>
+<p>{{topicInfo.timestamp|date:"medium"}}</p>
+
+
+<button  mat-raised-button color="primary" (click)="open_createCommentDialog()">Create Comment</button>
+
 <table mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> title </th>
-      <td mat-cell *matCellDef="let topic"> {{topic.title}} </td>
-    </ng-container>
+
+
     <ng-container matColumnDef="author">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> author </th>
-      <td mat-cell *matCellDef="let topic"> {{topic.author}} </td>
+      <td mat-cell *matCellDef="let comment"> {{comment.author}} </td>
     </ng-container>
-    <ng-container matColumnDef="time">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> time </th>
-      <td mat-cell *matCellDef="let topic"> {{topic.time}} </td>
+    <ng-container matColumnDef="info">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> info </th>
+      <td mat-cell *matCellDef="let comment"> 
+        {{comment|json}} 
+      </td>
     </ng-container>
 
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"  (click)="toTopicDetail(myRowData)"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"  ></tr>
   
   
   </table>
