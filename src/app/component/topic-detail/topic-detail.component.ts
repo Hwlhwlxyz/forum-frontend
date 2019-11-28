@@ -1,20 +1,25 @@
 import { ActivatedRoute } from '@angular/router';
 import { TopicService } from './../../service/topic.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import {PageEvent, MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { CreatecommentDialogComponent } from '../dialog/createcomment-dialog/createcomment-dialog.component';
+import { Subscription } from 'rxjs';
+import { AccountService } from '../../service/account.service';
 
 @Component({
   selector: 'app-topic-detail',
   templateUrl: './topic-detail.component.html',
   styleUrls: ['./topic-detail.component.css']
 })
-export class TopicDetailComponent implements OnInit {
-
+export class TopicDetailComponent implements OnInit, OnDestroy {
+  userIsAuth = false;
+  private statusListenerSubs: Subscription;
+  
   constructor(private topicService: TopicService,
     private activatedRoute: ActivatedRoute,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private accountService: AccountService) { }
 
   columnsToDisplay = ['author', 'info'];
   dataSource = new MatTableDataSource < any > ();
@@ -48,7 +53,10 @@ export class TopicDetailComponent implements OnInit {
     
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
+    this.userIsAuth = this.accountService.getIsAuth();
+    this.statusListenerSubs = this.accountService.getStatusListener().subscribe(isAuthenticated => {
+      this.userIsAuth = isAuthenticated;
+    });
     //this.dataSource.data = []
 
 
@@ -77,4 +85,7 @@ export class TopicDetailComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.statusListenerSubs.unsubscribe();
+  }
 }

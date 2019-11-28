@@ -1,7 +1,7 @@
 <p>topic works!</p>
 <app-navigator></app-navigator>
 <br>
-<button  mat-raised-button color="primary" (click)="open_createtopicDialog()">Create Topic</button>
+<button *ngIf="userIsAuth" mat-raised-button color="primary" (click)="open_createtopicDialog()">Create Topic</button>
 <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> title </th>

@@ -5,7 +5,7 @@
 <p>{{topicInfo.timestamp|date:"medium"}}</p>
 
 
-<button  mat-raised-button color="primary" (click)="open_createCommentDialog()">Create Comment</button>
+<button *ngIf="userIsAuth" mat-raised-button color="primary" (click)="open_createCommentDialog()">Create Comment</button>
 
 <table mat-table [dataSource]="dataSource" matSort>
 
