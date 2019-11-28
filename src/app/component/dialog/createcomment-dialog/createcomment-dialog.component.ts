@@ -13,6 +13,8 @@ export class CreatecommentDialogComponent implements OnInit {
 
   topicId
   content
+  images = []
+  imagelink
 
   constructor(public dialogRef: MatDialogRef<CreatecommentDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data,
@@ -37,4 +39,11 @@ export class CreatecommentDialogComponent implements OnInit {
       console.log(response)
     })
   }
+
+
+
+
+
+
+
 }
