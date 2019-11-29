@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatSnackBar } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { TopicService } from 'src/app/service/topic.service';
 
 @Component({
@@ -10,10 +10,34 @@ import { TopicService } from 'src/app/service/topic.service';
 export class EdittopicDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EdittopicDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data,
     public topicService: TopicService,
-    private sncackBar: MatSnackBar) { }
-
+    private snackBar: MatSnackBar) { }
+  
+  topicId
+  title 
+  content 
   ngOnInit() {
+    this.topicId = this.data['topicId'];
+    this.topicService.getEditTopic(this.topicId).subscribe(response => {
+      this.title = response['title'];
+      this.content = response['content'];
+    });
   }
 
+  submit() {
+    this.topicService.editTopic(this.topicId, this.title, this.content).subscribe(response => {
+      this.snackBar.open('success', '', {
+        duration: 2000,
+      });
+      this.dialogRef.close();
+    },
+    err => {
+      console.log(err);
+    }) 
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

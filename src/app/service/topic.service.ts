@@ -51,8 +51,15 @@ export class TopicService {
 
   createComment(postid, content ){
     let commentdata = {
-      content: content,
+      content: content
     }
     return this.http.post(this.topicsURL+"/"+postid+"/newComment", commentdata)
+  }
+
+  topicLike(topicid) {
+    let topicdata = {
+      topicid: topicid
+    }
+    return this.http.put(this.topicsURL+'/'+topicid+"/like", topicdata);
   }
 }

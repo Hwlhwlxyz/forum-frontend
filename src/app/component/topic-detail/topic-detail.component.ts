@@ -6,6 +6,7 @@ import { MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { CreatecommentDialogComponent } from '../dialog/createcomment-dialog/createcomment-dialog.component';
 import { Subscription } from 'rxjs';
 import { AccountService } from '../../service/account.service';
+import { EdittopicDialogComponent } from '../dialog/edittopic-dialog/edittopic-dialog.component';
 
 @Component({
   selector: 'app-topic-detail',
@@ -32,11 +33,12 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
   comments = []
   topicId
 
-  topicInfo = {}
+  topicInfo
 
 
   author: string;
   authorid
+  currentid
 
   content
   images
@@ -55,7 +57,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     this.dataSource.sort = this.sort;
     this.userIsAuth = this.accountService.getIsAuth();
     if (this.userIsAuth)
-      this.authorid = this.accountService.getUserId();
+      this.currentid = this.accountService.getUserId();
     this.statusListenerSubs = this.accountService.getStatusListener().subscribe(isAuthenticated => {
       this.userIsAuth = isAuthenticated;
     });
@@ -73,9 +75,27 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
       (response)=>{
        
         console.log(response) 
-        this.comments = response['comments']
+        this.comments = response['comments'];
+        this.authorid = response['authorid'];
+        this.author = response['author'];
+        this.title = response['title'];
+        this.content = response['content'];
+        this.likes = response['likes'];
+        this.timestamp = response['timestamp'];
+        this.tags = response['tags'];
+        this.images = response['images'];
+
         console.log(this.comments)
         this.dataSource.data = this.comments;
+        this.topicInfo = {
+          authorid: this.authorid,
+          author: this.author,
+          title: this.title,
+          content: this.content,
+          timestamp: this.timestamp,
+          tags: this.tags,
+          images: this.images
+        }
       }
     )
   }
@@ -85,6 +105,19 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
       width: '600px',
       data:{topicId:this.topicId}
     });
+  }
+
+  open_editTopicDialog() {
+    const dialogRef = this.dialog.open(EdittopicDialogComponent, {
+      width: '600px',
+      data:{topicId:this.topicId}
+    })
+  }
+
+  addLikes() {
+    this.topicService.topicLike(this.topicId).subscribe(response => {
+      this.likes = response['likes'];
+    })
   }
 
   ngOnDestroy() {
