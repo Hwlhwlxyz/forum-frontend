@@ -53,6 +53,7 @@ import { DashboardComponent } from './component/admin/dashboard/dashboard.compon
 import { CreatetopicDialogComponent } from './component/dialog/createtopic-dialog/createtopic-dialog.component';
 import { AccountInterceptor } from './service/account-interceptor';
 import { CreatecommentDialogComponent } from './component/dialog/createcomment-dialog/createcomment-dialog.component';
+import { EdittopicDialogComponent } from './component/dialog/edittopic-dialog/edittopic-dialog.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { CreatecommentDialogComponent } from './component/dialog/createcomment-d
     DashboardComponent,
     CreatetopicDialogComponent,
     CreatecommentDialogComponent,
+    EdittopicDialogComponent,
     
   ],
   imports: [

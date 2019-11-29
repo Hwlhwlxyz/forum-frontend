@@ -29,6 +29,18 @@ export class TopicService {
     return this.http.post(this.topicsURL, topicdata);
   }
 
+  getEditTopic(topicid) {
+    return this.http.get(this.topicsURL + '/' + topicid + '/edit');
+  }
+
+  editTopic(topicid, title, content) {
+    let topicdata = {
+      title: title,
+      content: content
+    }
+    return this.http.put(this.topicsURL + '/' + topicid + '/edit', topicdata);
+  }
+
   getTopicById(topicid){
     return this.http.get(this.topicsURL+'/'+topicid);
   }

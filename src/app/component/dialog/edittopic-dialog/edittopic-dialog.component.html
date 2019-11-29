@@ -1,0 +1,15 @@
+<div mat-dialog-content>
+        <h1 mat-dialog-title> Edit Topic </h1>
+      <mat-form-field>
+        <input matInput [(ngModel)]="title" placeholder="Title" name="title" required>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <textarea matInput [(ngModel)]="content" placeholder="Content" name="content" required></textarea>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">cancel</button>
+      <button mat-raised-button type="submit" (click)="submit()" color="primary">Submit</button>
+    
+    </div>

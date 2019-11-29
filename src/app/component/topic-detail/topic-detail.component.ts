@@ -35,7 +35,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
   topicInfo = {}
 
 
-  author
+  author: string;
   authorid
 
   content
@@ -54,6 +54,8 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.userIsAuth = this.accountService.getIsAuth();
+    if (this.userIsAuth)
+      this.authorid = this.accountService.getUserId();
     this.statusListenerSubs = this.accountService.getStatusListener().subscribe(isAuthenticated => {
       this.userIsAuth = isAuthenticated;
     });
