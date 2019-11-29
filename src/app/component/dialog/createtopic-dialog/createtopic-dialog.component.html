@@ -1,6 +1,5 @@
-
 <div mat-dialog-content>
-    <h1 mat-dialog-title> Create Topic </h1>
+  <h1 mat-dialog-title> Create Topic </h1>
   <mat-form-field>
     <input matInput [(ngModel)]="title" placeholder="Title" name="title" required>
   </mat-form-field>
@@ -27,21 +26,18 @@
 
 
 
-    <div *ngFor="let image of images">
-        <mat-form-field class="example-full-width">
-            <input [(ngModel)]="image" name="image" matInput placeholder="image's link" >
-          </mat-form-field>
-          <br>
-    </div>
+  <div *ngFor="let image of images">
     <mat-form-field class="example-full-width">
-        <input [(ngModel)]="imagelink" matInput placeholder="image's link">
-      </mat-form-field>
-    
-  <button [disabled]="invalidImagelink()" mat-raised-button type="submit" (click)="addImagesLink()" color="primary">Add input</button>
+      <input [(ngModel)]="image" name="image" matInput placeholder="image's link">
+    </mat-form-field>
+    <br>
+  </div>
+  <mat-form-field class="example-full-width">
+    <input [(ngModel)]="imagelink" matInput placeholder="image's link">
+  </mat-form-field>
 
-
-
-
+  <button [disabled]="invalidImagelink()" mat-raised-button type="submit" (click)="addImagesLink()" color="primary">Add
+    input</button>
   {{images|json}}
 </div>
 <div mat-dialog-actions>

@@ -7,12 +7,12 @@
   <mat-card-content>
     <p>{{topicInfo.content}}</p>
     <div *ngFor="let image of images">
-      <img ng-src="{{image}}">
+      <img src="{{image}}">
     </div>
   </mat-card-content>
   <mat-card-actions>
     <button mat-button mat-raised-button color="primary" (click)="addLikes()">like</button>
-    {{topicInfo.likes}}
+    {{likes}}
     <button *ngIf="topicInfo.authorid == currentid" mat-raised-button color="warn" (click)="open_editTopicDialog()">edit</button>
   </mat-card-actions>
 </mat-card>

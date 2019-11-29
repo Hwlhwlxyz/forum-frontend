@@ -65,6 +65,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
 
 
     this.getTopicInfo();
+    console.log('topicinfo',this.topicInfo)
   }
 
  
