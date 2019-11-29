@@ -33,7 +33,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
   comments = []
   topicId
 
-  topicInfo
+  topicInfo = {}
 
 
   author: string;
@@ -65,7 +65,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
 
 
     this.getTopicInfo();
-    console.log('topicinfo',this.topicInfo)
+    
   }
 
  
@@ -97,6 +97,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
           tags: this.tags,
           images: this.images
         }
+        console.log('topicinfo',this.topicInfo)
       }
     )
   }
@@ -119,6 +120,10 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     this.topicService.topicLike(this.topicId).subscribe(response => {
       this.likes = response['likes'];
     })
+  }
+
+  isCurrentUser(authorid){
+    return this.currentid === authorid;
   }
 
   ngOnDestroy() {
