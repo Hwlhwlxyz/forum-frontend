@@ -116,7 +116,10 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(EdittopicDialogComponent, {
       width: '600px',
       data:{topicId:this.topicId}
-    })
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
   }
 
   open_editCommentDialog(commentInfo) {
