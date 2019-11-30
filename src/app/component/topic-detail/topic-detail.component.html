@@ -12,7 +12,7 @@
   </mat-card-content>
   <mat-card-actions>
     <button *ngIf="userIsAuth" mat-button mat-raised-button color="primary" (click)="addLikes()">like</button>
-    {{likes}}
+    {{topiclikes}}
     <button *ngIf="isCurrentUser(topicInfo.authorid)" mat-raised-button color="warn" (click)="open_editTopicDialog()">edit</button>
   </mat-card-actions>
 </mat-card>

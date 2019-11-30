@@ -22,7 +22,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private accountService: AccountService) { }
 
-  columnsToDisplay = ['author', 'info'];
+  columnsToDisplay = ['author', 'info', 'likes'];
   dataSource = new MatTableDataSource < any > ();
   @ViewChild(MatPaginator, {
     static: true
@@ -42,7 +42,8 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
 
   content
   images
-  likes
+  topiclikes
+  commentlikes
   tags
   timestamp
   title
@@ -81,7 +82,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
         this.author = response['author'];
         this.title = response['title'];
         this.content = response['content'];
-        this.likes = response['likes'];
+        this.topiclikes = response['likes'];
         this.timestamp = response['timestamp'];
         this.tags = response['tags'];
         this.images = response['images'];
@@ -118,14 +119,15 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
 
   addLikes() {
     this.topicService.topicLike(this.topicId).subscribe(response => {
-      this.likes = response['likes'];
+      this.topiclikes = response['likes'];
     })
   }
 
   addCommentLikes(commentid) {
     this.topicService.commentLike(this.topicId, commentid).subscribe(response => {
-      this.likes = response['likes'];
-    })
+      this.commentlikes = response['likes'];
+    });
+    this.getTopicInfo();
   }
 
   isCurrentUser(authorid){
