@@ -15,4 +15,13 @@ export class InfoService {
     this.userid = this.accountService.getUserId();
     return this.http.get(this.infoURL + '/' + this.userid);
   }
+
+  updateUser(password, description) {
+    let infodata = {
+      password: password,
+      description: description
+    };
+    this.userid = this.accountService.getUserId();
+    return this.http.put(this.infoURL + '/' + this.userid, infodata);
+  }
 }
