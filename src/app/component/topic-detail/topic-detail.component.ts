@@ -117,6 +117,10 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     })
   }
 
+  open_editCommentDialog() {
+    
+  }
+
   addLikes() {
     this.topicService.topicLike(this.topicId).subscribe(response => {
       this.topiclikes = response['likes'];

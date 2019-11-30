@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import { TopicService } from 'src/app/service/topic.service';
 
 @Component({
   selector: 'app-editcomment-dialog',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditcommentDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<EditcommentDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data,
+    public topicService: TopicService,
+    private snackBar: MatSnackBar) { }
+
+  commentId 
+  content 
 
   ngOnInit() {
+    this.commentId = this.data["commentId"];
+    
   }
 
 }

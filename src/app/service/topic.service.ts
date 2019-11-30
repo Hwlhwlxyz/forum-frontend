@@ -41,6 +41,17 @@ export class TopicService {
     return this.http.put(this.topicsURL + '/' + topicid + '/edit', topicdata);
   }
 
+  getEditComment(topicid, commentid) {
+    return this.http.get(this.topicsURL + "/" + topicid + "/" + commentid + "/edit");
+  }
+
+  editComment(topicid, commentid, content) {
+    let topicdata = {
+      content: content
+    }
+    return this.http.put(this.topicsURL + "/" + topicid + "/" + commentid + "/edit", topicdata);
+  }
+
   getTopicById(topicid){
     return this.http.get(this.topicsURL+'/'+topicid);
   }
