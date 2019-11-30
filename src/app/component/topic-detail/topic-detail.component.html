@@ -39,6 +39,9 @@
       <td mat-cell *matCellDef="let comment">
         <button *ngIf="userIsAuth" mat-button mat-raised-button color="primary" (click)="addCommentLikes(comment._id)">like</button>
         {{comment.likes}}
+
+        <button *ngIf="userIsAuth" mat-button mat-raised-button color="primary" (click)="open_editCommentDialog(comment)">edit</button>
+
       </td>
     </ng-container>
     <ng-container matColumnDef="edit">

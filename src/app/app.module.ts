@@ -118,7 +118,7 @@ import { EditcommentDialogComponent } from './component/dialog/editcomment-dialo
     MatTreeModule,
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AccountInterceptor, multi: true}],
-  entryComponents: [CreatetopicDialogComponent, CreatecommentDialogComponent],
+  entryComponents: [CreatetopicDialogComponent, CreatecommentDialogComponent, EditcommentDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
