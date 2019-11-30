@@ -14,12 +14,20 @@ export class EditcommentDialogComponent implements OnInit {
     public topicService: TopicService,
     private snackBar: MatSnackBar) { }
 
-  commentId 
-  content 
-
+  commentInfo
   ngOnInit() {
-    this.commentId = this.data["commentId"];
-    
+
+    console.log(this.data)
+    this.commentInfo = this.data['commentInfo']
+  }
+
+
+  submit(){
+    console.log(this.commentInfo)
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

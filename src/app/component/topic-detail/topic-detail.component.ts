@@ -1,3 +1,4 @@
+import { EditcommentDialogComponent } from './../dialog/editcomment-dialog/editcomment-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { TopicService } from './../../service/topic.service';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
@@ -117,8 +118,10 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     })
   }
 
-  open_editCommentDialog() {
-    
+  open_editCommentDialog(commentInfo) {
+    const dialogRef = this.dialog.open(EditcommentDialogComponent, {
+      data: {commentInfo: commentInfo}
+    })
   }
 
   addLikes() {
