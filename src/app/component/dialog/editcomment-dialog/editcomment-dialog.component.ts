@@ -22,7 +22,7 @@ export class EditcommentDialogComponent implements OnInit {
     this.commentInfo = this.data['commentInfo'];
     this.topicid = this.commentInfo.postid;
     this.commentid = this.commentInfo._id;
-    this.content = this.topicService.getEditComment(this.topicid, this.commentid).subscribe(response => {
+    this.topicService.getEditComment(this.topicid, this.commentid).subscribe(response => {
       this.content = response['content'];
     })
   }
