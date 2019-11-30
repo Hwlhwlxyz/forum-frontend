@@ -3,7 +3,7 @@
 </mat-toolbar>
 
 <button mat-button [routerLink]="['/topics']">Topics</button>
-<button mat-button [routerLink]="['/userinfo']">Profile</button>
+<button *ngIf="userIsAuth" mat-button [routerLink]="['/userinfo']">Profile</button>
 
 <button *ngIf="!userIsAuth" mat-button [routerLink]="['/login']">Login</button>
 <button *ngIf="!userIsAuth" mat-button [routerLink]="['/Signup']">Signup</button>
