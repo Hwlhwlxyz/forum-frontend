@@ -34,7 +34,10 @@ export class EditcommentDialogComponent implements OnInit {
         duration: 2000,
       });
       this.dialogRef.close();
-    })
+    },
+    err => {
+      console.log(err);
+    });
   }
 
   onNoClick(): void {
