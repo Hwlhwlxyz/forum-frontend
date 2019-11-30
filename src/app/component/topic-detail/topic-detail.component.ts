@@ -23,7 +23,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private accountService: AccountService) { }
 
-  columnsToDisplay = ['author', 'info', 'likes'];
+  columnsToDisplay = ['author', 'info', 'likes', 'edit'];
   dataSource = new MatTableDataSource < any > ();
   @ViewChild(MatPaginator, {
     static: true
@@ -62,6 +62,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
       this.currentid = this.accountService.getUserId();
     this.statusListenerSubs = this.accountService.getStatusListener().subscribe(isAuthenticated => {
       this.userIsAuth = isAuthenticated;
+      this.currentid = this.accountService.getUserId();
     });
     //this.dataSource.data = []
 

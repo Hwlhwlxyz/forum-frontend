@@ -54,7 +54,7 @@ export class AccountService {
         this.statusListener.next(true);
         const now = new Date();
         const expirationDate = new Date(now.getTime() + expiresDuration * 1000);
-        this.saveAccountData(token, expirationDate);
+        this.saveAccountData(token, expirationDate, this.userId);
         this.router.navigate(['/topics']);
       }
       console.log(this.token)
@@ -78,6 +78,7 @@ export class AccountService {
     if (expiresIn > 0) {
       this.token = accountInformation.token;
       this.isAuth = true;
+      this.userId = accountInformation.userId;
       this.setTimer(expiresIn / 1000);
       this.statusListener.next(true);
     }
@@ -88,6 +89,7 @@ export class AccountService {
     this.isAuth = false;
     this.statusListener.next(false);
     clearTimeout(this.tokenTimer);
+    this.userId = null;
     this.clearAccountData();
     this.router.navigate(['/topics']);
   }
@@ -98,25 +100,29 @@ export class AccountService {
     }, duration * 1000);
   }
 
-  private saveAccountData(token: string, expirationDate: Date) {
+  private saveAccountData(token: string, expirationDate: Date, userId: string) {
     localStorage.setItem("token", token);
     localStorage.setItem("expiration", expirationDate.toISOString());
+    localStorage.setItem("userId", userId);
   }
 
   private clearAccountData() {
     localStorage.removeItem("token");
     localStorage.removeItem("expiration");
+    localStorage.removeItem("userId");
   }
 
   private getAccountData() {
     const token = localStorage.getItem("token");
     const expirationDate = localStorage.getItem("expiration");
+    const userId = localStorage.getItem("userId");
     if (!token || !expirationDate) {
       return;
     }
     return {
       token: token,
-      expirationDate: new Date(expirationDate)
+      expirationDate: new Date(expirationDate),
+      userId: userId
     };
   }
 

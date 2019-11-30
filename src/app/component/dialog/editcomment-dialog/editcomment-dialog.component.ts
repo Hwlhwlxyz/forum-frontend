@@ -14,16 +14,27 @@ export class EditcommentDialogComponent implements OnInit {
     public topicService: TopicService,
     private snackBar: MatSnackBar) { }
 
+  topicid
+  commentid
+  content
   commentInfo
   ngOnInit() {
-
-    console.log(this.data)
-    this.commentInfo = this.data['commentInfo']
+    this.commentInfo = this.data['commentInfo'];
+    this.topicid = this.commentInfo.postid;
+    this.commentid = this.commentInfo._id;
+    this.content = this.topicService.getEditComment(this.topicid, this.commentid).subscribe(response => {
+      this.content = response['content'];
+    })
   }
 
 
   submit(){
-    console.log(this.commentInfo)
+    this.topicService.editComment(this.topicid, this.commentid, this.content).subscribe(response => {
+      this.snackBar.open('success', '', {
+        duration: 2000,
+      });
+      this.dialogRef.close();
+    })
   }
 
   onNoClick(): void {
