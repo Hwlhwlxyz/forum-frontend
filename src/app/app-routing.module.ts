@@ -8,7 +8,7 @@ import { SignupComponent } from './component/signup/signup.component';
 import { AccountGuard } from './service/account-guard';
 
 const routes: Routes = [
-  { path:'', component: LoginComponent},
+  { path:'', component: TopicComponent},
   { path:'login', component: LoginComponent},
   { path:'signup', component: SignupComponent},
   { path:'topics', component: TopicComponent},

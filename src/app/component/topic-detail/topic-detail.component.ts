@@ -122,6 +122,12 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     })
   }
 
+  addCommentLikes(commentid) {
+    this.topicService.commentLike(this.topicId, commentid).subscribe(response => {
+      this.likes = response['likes'];
+    })
+  }
+
   isCurrentUser(authorid){
     return this.currentid === authorid;
   }

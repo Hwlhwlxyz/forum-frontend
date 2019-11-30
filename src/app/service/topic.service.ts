@@ -62,4 +62,12 @@ export class TopicService {
     }
     return this.http.put(this.topicsURL+'/'+topicid+"/like", topicdata);
   }
+
+  commentLike(topicid, commentid) {
+    let topicdata = {
+      topicid: topicid,
+      commentid: commentid
+    }
+    return this.http.put(this.topicsURL+"/"+topicid+"/"+commentid+"/like", topicdata);
+  }
 }
