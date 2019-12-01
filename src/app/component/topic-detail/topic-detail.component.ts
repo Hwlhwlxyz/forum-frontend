@@ -129,7 +129,10 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
   open_editCommentDialog(commentInfo) {
     const dialogRef = this.dialog.open(EditcommentDialogComponent, {
       data: {commentInfo: commentInfo}
-    })
+    });
+    dialogRef.afterClosed().subscribe(response=>{
+      this.getTopicInfo();
+    });
   }
 
   addLikes() {

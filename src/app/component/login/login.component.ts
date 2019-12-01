@@ -10,16 +10,22 @@ import { AccountService } from 'src/app/service/account.service';
 export class LoginComponent implements OnInit {
   username: String;
   password: String;
+  selectedIdentity = "user";
   constructor(public accountService: AccountService) { }
 
   ngOnInit() {
   }
 
   login() {
-    
-    let r = this.accountService.login(this.username, this.password);
-    console.log(r);
-    return r;
+    if (this.selectedIdentity==="user"){
+      let r = this.accountService.login(this.username, this.password);
+      console.log(r);
+      return r;
+    }
+    if(this.selectedIdentity==="admin"){
+      console.log('admin')
+    }
+   
   }
 
 

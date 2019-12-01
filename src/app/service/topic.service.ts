@@ -42,10 +42,12 @@ export class TopicService {
   }
 
   getEditComment(topicid, commentid) {
+    console.log(this.topicsURL + "/" + topicid + "/" + commentid + "/edit")
     return this.http.get(this.topicsURL + "/" + topicid + "/" + commentid + "/edit");
   }
 
   editComment(topicid, commentid, content) {
+    console.log(content)
     let topicdata = {
       content: content
     }
@@ -57,7 +59,7 @@ export class TopicService {
   }
 
   getTopicsByTag(tag){
-    return this.http.get(this.topicsURL+'/')
+    return this.http.get(this.topicsURL+'/search/'+tag)
   }
 
   createComment(postid, content ){
