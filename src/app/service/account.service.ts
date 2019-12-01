@@ -14,6 +14,7 @@ export class AccountService {
   private tokenTimer: any;
   private userId: string;
   private isAuth = false;
+  private isAdmin = false;
   private statusListener = new Subject<boolean>();
   public apiBaseURL = environment.apiBaseURL;
 
@@ -36,6 +37,10 @@ export class AccountService {
     return this.isAuth;
   }
 
+  getIsAdmin() {
+    return this.isAdmin;
+  }
+
   getStatusListener() {
     return this.statusListener.asObservable();
   }
@@ -43,7 +48,7 @@ export class AccountService {
   login(username, password) {
     const loginData: LoginData = {username: username, password: password};
     console.log('logindata',loginData)
-    this.http.post<{token: string, expiresIn: number, userId: string}>(this.apiBaseURL+"/loginSignup/login", loginData ).subscribe(response => {
+    this.http.post<{token: string, expiresIn: number, userId: string, isAdmin: boolean}>(this.apiBaseURL+"/loginSignup/login", loginData ).subscribe(response => {
       const token = response.token;
       this.token = token;
       if (token) {
@@ -51,10 +56,11 @@ export class AccountService {
         this.setTimer(expiresDuration);
         this.isAuth = true;
         this.userId = response.userId;
+        this.isAdmin = response.isAdmin;
         this.statusListener.next(true);
         const now = new Date();
         const expirationDate = new Date(now.getTime() + expiresDuration * 1000);
-        this.saveAccountData(token, expirationDate, this.userId);
+        this.saveAccountData(token, expirationDate, this.userId, this.isAdmin);
         this.router.navigate(['/topics']);
       }
       console.log(this.token)
@@ -79,6 +85,7 @@ export class AccountService {
       this.token = accountInformation.token;
       this.isAuth = true;
       this.userId = accountInformation.userId;
+      this.isAdmin = accountInformation.isAdmin;
       this.setTimer(expiresIn / 1000);
       this.statusListener.next(true);
     }
@@ -87,6 +94,7 @@ export class AccountService {
   logout() {
     this.token = null;
     this.isAuth = false;
+    this.isAdmin = false;
     this.statusListener.next(false);
     clearTimeout(this.tokenTimer);
     this.userId = null;
@@ -100,29 +108,33 @@ export class AccountService {
     }, duration * 1000);
   }
 
-  private saveAccountData(token: string, expirationDate: Date, userId: string) {
+  private saveAccountData(token: string, expirationDate: Date, userId: string, isAdmin: boolean) {
     localStorage.setItem("token", token);
     localStorage.setItem("expiration", expirationDate.toISOString());
     localStorage.setItem("userId", userId);
+    localStorage.setItem("isAdmin", isAdmin.toString());
   }
 
   private clearAccountData() {
     localStorage.removeItem("token");
     localStorage.removeItem("expiration");
     localStorage.removeItem("userId");
+    localStorage.removeItem("isAdmin");
   }
 
   private getAccountData() {
     const token = localStorage.getItem("token");
     const expirationDate = localStorage.getItem("expiration");
     const userId = localStorage.getItem("userId");
+    const isAdmin = (localStorage.getItem("isAdmin") === 'true');
     if (!token || !expirationDate) {
       return;
     }
     return {
       token: token,
       expirationDate: new Date(expirationDate),
-      userId: userId
+      userId: userId,
+      isAdmin: isAdmin
     };
   }
 
