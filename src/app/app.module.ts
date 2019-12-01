@@ -56,6 +56,7 @@ import { CreatecommentDialogComponent } from './component/dialog/createcomment-d
 import { EdittopicDialogComponent } from './component/dialog/edittopic-dialog/edittopic-dialog.component';
 import { EditcommentDialogComponent } from './component/dialog/editcomment-dialog/editcomment-dialog.component';
 import { UsertopicsComponent } from './component/user/usertopics/usertopics.component';
+import { TabUserComponent } from './component/user/tab-user/tab-user.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { UsertopicsComponent } from './component/user/usertopics/usertopics.comp
     EdittopicDialogComponent,
     EditcommentDialogComponent,
     UsertopicsComponent,
+    TabUserComponent,
     
   ],
   imports: [
