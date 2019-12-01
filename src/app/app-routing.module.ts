@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './component/login/login.component';
 import { SignupComponent } from './component/signup/signup.component';
 import { AccountGuard } from './service/account-guard';
+import { DashboardComponent } from './component/admin/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path:'', component: TopicComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path:'signup', component: SignupComponent},
   { path:'topics', component: TopicComponent},
   { path:'topicdetail/:topicid', component: TopicDetailComponent},
-  { path:'userinfo', component: TabUserComponent}
+  { path:'userinfo', component: TabUserComponent},
+  { path:'manage', component: DashboardComponent}
 ];
 
 @NgModule({

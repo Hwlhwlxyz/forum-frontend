@@ -4,11 +4,11 @@ import { InfoService } from 'src/app/service/info.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-usertopics',
-  templateUrl: './usertopics.component.html',
-  styleUrls: ['./usertopics.component.css']
+  selector: 'app-usercomments',
+  templateUrl: './usercomments.component.html',
+  styleUrls: ['./usercomments.component.css']
 })
-export class UsertopicsComponent implements OnInit {
+export class UsercommentsComponent implements OnInit {
 
   topics;
   columnsToDisplay = ['title', 'content' , 'tags', 'author', 'timestamp'];
@@ -19,6 +19,7 @@ export class UsertopicsComponent implements OnInit {
   @ViewChild(MatSort, {
     static: true
   }) sort: MatSort;
+
   constructor(private infoService: InfoService, private router: Router) { }
 
   ngOnInit() {
@@ -26,7 +27,7 @@ export class UsertopicsComponent implements OnInit {
   }
 
   getAllTopics(){
-    this.infoService.getUserPosts().subscribe(response=>
+    this.infoService.getUserComments().subscribe(response=>
       {
         this.topics = response;
         this.dataSource.data = this.topics;
@@ -37,5 +38,4 @@ export class UsertopicsComponent implements OnInit {
     this.router.navigate(["/topicdetail",data['_id']])
     console.log(data)
   }
-
 }

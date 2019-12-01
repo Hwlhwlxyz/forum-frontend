@@ -57,6 +57,9 @@ import { EdittopicDialogComponent } from './component/dialog/edittopic-dialog/ed
 import { EditcommentDialogComponent } from './component/dialog/editcomment-dialog/editcomment-dialog.component';
 import { UsertopicsComponent } from './component/user/usertopics/usertopics.component';
 import { TabUserComponent } from './component/user/tab-user/tab-user.component';
+import { UsercommentsComponent } from './component/user/usercomments/usercomments.component';
+import { AdminsearchComponent } from './component/admin/adminsearch/adminsearch.component';
+import { DailyactivenessComponent } from './component/admin/dailyactiveness/dailyactiveness.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +77,9 @@ import { TabUserComponent } from './component/user/tab-user/tab-user.component';
     EditcommentDialogComponent,
     UsertopicsComponent,
     TabUserComponent,
+    UsercommentsComponent,
+    AdminsearchComponent,
+    DailyactivenessComponent,
     
   ],
   imports: [
