@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
       return r;
     }
     if(this.selectedIdentity==="admin"){
-      console.log('admin')
+      let r = this.accountService.adminLogin(this.username, this.password);
+      return r;
     }
    
   }

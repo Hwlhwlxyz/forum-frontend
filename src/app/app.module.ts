@@ -55,6 +55,7 @@ import { AccountInterceptor } from './service/account-interceptor';
 import { CreatecommentDialogComponent } from './component/dialog/createcomment-dialog/createcomment-dialog.component';
 import { EdittopicDialogComponent } from './component/dialog/edittopic-dialog/edittopic-dialog.component';
 import { EditcommentDialogComponent } from './component/dialog/editcomment-dialog/editcomment-dialog.component';
+import { UsertopicsComponent } from './component/user/usertopics/usertopics.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { EditcommentDialogComponent } from './component/dialog/editcomment-dialo
     CreatecommentDialogComponent,
     EdittopicDialogComponent,
     EditcommentDialogComponent,
+    UsertopicsComponent,
     
   ],
   imports: [
