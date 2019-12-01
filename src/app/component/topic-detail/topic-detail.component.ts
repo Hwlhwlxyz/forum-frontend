@@ -114,6 +114,9 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
       width: '600px',
       data:{topicId:this.topicId}
     });
+    dialogRef.afterClosed().subscribe(response=>{
+      this.getTopicInfo();
+    });
   }
 
   open_editTopicDialog() {
@@ -122,7 +125,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
       data:{topicId:this.topicId}
     });
     dialogRef.afterClosed().subscribe(result => {
-      
+      this.getTopicInfo();
     });
   }
 
@@ -146,6 +149,12 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
       this.commentlikes = response['likes'];
     });
     this.getTopicInfo();
+  }
+
+  deleteComment(commentid) {
+    this.topicService.commentDelete(this.currentid,commentid).subscribe(response => {
+      this.getTopicInfo();
+    });
   }
 
   isCurrentUser(authorid){

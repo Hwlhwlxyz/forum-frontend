@@ -17,7 +17,7 @@ export class TopicComponent implements OnInit, OnDestroy {
   userIsAuth = false;
   userIsAdmin = false;
   private statusListenerSubs: Subscription;
-  columnsToDisplay = ['title', 'content' , 'tags', 'author', 'timestamp'];
+  columnsToDisplay = ['title', 'content' , 'tags', 'author', 'timestamp', 'delete'];
   dataSource = new MatTableDataSource < any > ();
   @ViewChild(MatPaginator, {
     static: true
@@ -82,6 +82,12 @@ export class TopicComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(response=>{
       this.getAllTopics();
     })
+  }
+
+  deleteTopic(postid) {
+    this.topicService.topicDelete(postid).subscribe(response => {
+      this.getAllTopics();
+    });
   }
 
   ngOnDestroy() {

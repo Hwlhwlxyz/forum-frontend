@@ -85,7 +85,11 @@ export class TopicService {
     return this.http.put(this.topicsURL+"/"+topicid+"/"+commentid+"/like", topicdata);
   }
 
+  topicDelete(postid) {
+    return this.http.delete(this.adminTopicsURL+"/"+postid+"/delete");
+  }
+
   commentDelete(adminid, commentid) {
-    return this.http.delete(this.adminTopicsURL+"/"+adminid+"/"+commentid+"/delete")
+    return this.http.delete(this.adminTopicsURL+"/"+adminid+"/"+commentid+"/delete");
   }
 }

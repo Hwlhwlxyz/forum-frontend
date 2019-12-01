@@ -36,7 +36,13 @@ export class CreatecommentDialogComponent implements OnInit {
 
   submit(){
     this.topicService.createComment(this.topicId, this.content).subscribe((response)=>{
-      console.log(response)
+      this.snackBar.open('success', '', {
+        duration: 2000,
+      });
+      this.dialogRef.close();
+    },
+    err => {
+      console.log(err)
     })
   }
 
