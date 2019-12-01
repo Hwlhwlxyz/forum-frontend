@@ -11,6 +11,7 @@ export class TopicService {
 
   apiBaseURL = environment.apiBaseURL;
   topicsURL =  environment.apiBaseURL+"/posts";
+  adminTopicsURL = environment.apiBaseURL+"/adminPosts";
   constructor(private http: HttpClient,
    public accountService: AccountService) { }
 
@@ -82,5 +83,9 @@ export class TopicService {
       commentid: commentid
     }
     return this.http.put(this.topicsURL+"/"+topicid+"/"+commentid+"/like", topicdata);
+  }
+
+  commentDelete(adminid, commentid) {
+    return this.http.delete(this.adminTopicsURL+"/"+adminid+"/"+commentid+"/delete")
   }
 }

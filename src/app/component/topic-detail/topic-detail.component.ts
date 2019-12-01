@@ -24,7 +24,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private accountService: AccountService) { }
 
-  columnsToDisplay = ['author', 'info', 'likes', 'edit'];
+  columnsToDisplay = ['author', 'info', 'likes', 'edit', 'delete'];
   dataSource = new MatTableDataSource < any > ();
   @ViewChild(MatPaginator, {
     static: true

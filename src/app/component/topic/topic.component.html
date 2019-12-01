@@ -1,6 +1,6 @@
 <app-navigator></app-navigator>
 <br>
-<button *ngIf="userIsAuth" mat-raised-button color="primary" (click)="open_createtopicDialog()">Create Topic</button>
+<button *ngIf="userIsAuth && !userIsAdmin" mat-raised-button color="primary" (click)="open_createtopicDialog()">Create Topic</button>
 
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="search">
