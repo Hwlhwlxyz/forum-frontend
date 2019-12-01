@@ -16,6 +16,7 @@ import { EdittopicDialogComponent } from '../dialog/edittopic-dialog/edittopic-d
 })
 export class TopicDetailComponent implements OnInit, OnDestroy {
   userIsAuth = false;
+  userIsAdmin = false;
   private statusListenerSubs: Subscription;
   
   constructor(private topicService: TopicService,
@@ -58,11 +59,14 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.userIsAuth = this.accountService.getIsAuth();
-    if (this.userIsAuth) 
+    if (this.userIsAuth) {
       this.currentid = this.accountService.getUserId();
+      this.userIsAdmin = this.accountService.getIsAdmin();
+    }
     this.statusListenerSubs = this.accountService.getStatusListener().subscribe(isAuthenticated => {
       this.userIsAuth = isAuthenticated;
       this.currentid = this.accountService.getUserId();
+      this.userIsAdmin = this.accountService.getIsAdmin();
     });
     //this.dataSource.data = []
 

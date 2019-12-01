@@ -14,6 +14,7 @@ import { AccountService } from 'src/app/service/account.service';
 export class TopicComponent implements OnInit, OnDestroy {
 
   userIsAuth = false;
+  userIsAdmin = false;
   private statusListenerSubs: Subscription;
   columnsToDisplay = ['title', 'author', 'time'];
   dataSource = new MatTableDataSource < any > ();
@@ -35,8 +36,11 @@ export class TopicComponent implements OnInit, OnDestroy {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.userIsAuth = this.accountService.getIsAuth();
+    if (this.userIsAuth)
+      this.userIsAdmin = this.accountService.getIsAdmin();
     this.statusListenerSubs = this.accountService.getStatusListener().subscribe(isAuthenticated => {
       this.userIsAuth = isAuthenticated;
+      this.userIsAdmin = this.accountService.getIsAdmin();
     });
 
     this.topicService.getAllTopics().subscribe(response=>
