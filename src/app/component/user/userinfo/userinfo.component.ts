@@ -15,6 +15,10 @@ export class UserinfoComponent implements OnInit {
   birth;
   description;
   ngOnInit() {
+    this.getUserInfo();
+  }
+
+  private getUserInfo() {
     this.infoService.getUserInfo().subscribe(response => {
       this.username = response["username"];
       this.password = response["password"];
@@ -33,5 +37,6 @@ export class UserinfoComponent implements OnInit {
     err => {
       console.log(err);
     });
+    this.getUserInfo();
   }
 }
