@@ -63,7 +63,32 @@ export class AccountService {
         this.saveAccountData(token, expirationDate, this.userId, this.isAdmin);
         this.router.navigate(['/topics']);
       }
-      console.log(this.token)
+    },
+    error => {
+      this.statusListener.next(false);
+    });
+  }
+
+  adminLogin(username, password) {
+    const adminLoginData: LoginData = {username: username, password: password};
+    this.http.post<{token: string, expiresIn: number, userId: string, isAdmin: boolean}>(this.apiBaseURL+"/loginSignup/adminLogin", adminLoginData).subscribe(response => {
+      const token = response.token;
+      this.token = token;
+      if (token) {
+        const expiresDuration = response.expiresIn;
+        this.setTimer(expiresDuration);
+        this.isAuth = true;
+        this.userId = response.userId;
+        this.isAdmin = response.isAdmin;
+        this.statusListener.next(true);
+        const now = new Date();
+        const expirationDate = new Date(now.getTime() + expiresDuration * 1000);
+        this.saveAccountData(token, expirationDate, this.userId, this.isAdmin);
+        this.router.navigate(['/topics']);
+      }
+    },
+    error => {
+      this.statusListener.next(false);
     })
   }
 

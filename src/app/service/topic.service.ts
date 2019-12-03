@@ -11,6 +11,7 @@ export class TopicService {
 
   apiBaseURL = environment.apiBaseURL;
   topicsURL =  environment.apiBaseURL+"/posts";
+  adminTopicsURL = environment.apiBaseURL+"/adminPosts";
   constructor(private http: HttpClient,
    public accountService: AccountService) { }
 
@@ -42,10 +43,12 @@ export class TopicService {
   }
 
   getEditComment(topicid, commentid) {
+    console.log(this.topicsURL + "/" + topicid + "/" + commentid + "/edit")
     return this.http.get(this.topicsURL + "/" + topicid + "/" + commentid + "/edit");
   }
 
   editComment(topicid, commentid, content) {
+    console.log(content)
     let topicdata = {
       content: content
     }
@@ -57,7 +60,7 @@ export class TopicService {
   }
 
   getTopicsByTag(tag){
-    return this.http.get(this.topicsURL+'/')
+    return this.http.get(this.topicsURL+'/search/'+tag)
   }
 
   createComment(postid, content ){
@@ -80,5 +83,13 @@ export class TopicService {
       commentid: commentid
     }
     return this.http.put(this.topicsURL+"/"+topicid+"/"+commentid+"/like", topicdata);
+  }
+
+  topicDelete(postid) {
+    return this.http.delete(this.adminTopicsURL+"/"+postid+"/delete");
+  }
+
+  commentDelete(adminid, commentid) {
+    return this.http.delete(this.adminTopicsURL+"/"+adminid+"/"+commentid+"/delete");
   }
 }

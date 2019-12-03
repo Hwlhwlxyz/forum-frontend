@@ -24,7 +24,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private accountService: AccountService) { }
 
-  columnsToDisplay = ['author', 'info', 'likes', 'edit'];
+  columnsToDisplay = ['author', 'info', 'likes', 'edit', 'delete'];
   dataSource = new MatTableDataSource < any > ();
   @ViewChild(MatPaginator, {
     static: true
@@ -114,6 +114,9 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
       width: '600px',
       data:{topicId:this.topicId}
     });
+    dialogRef.afterClosed().subscribe(response=>{
+      this.getTopicInfo();
+    });
   }
 
   open_editTopicDialog() {
@@ -122,14 +125,17 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
       data:{topicId:this.topicId}
     });
     dialogRef.afterClosed().subscribe(result => {
-      
+      this.getTopicInfo();
     });
   }
 
   open_editCommentDialog(commentInfo) {
     const dialogRef = this.dialog.open(EditcommentDialogComponent, {
       data: {commentInfo: commentInfo}
-    })
+    });
+    dialogRef.afterClosed().subscribe(response=>{
+      this.getTopicInfo();
+    });
   }
 
   addLikes() {
@@ -143,6 +149,12 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
       this.commentlikes = response['likes'];
     });
     this.getTopicInfo();
+  }
+
+  deleteComment(commentid) {
+    this.topicService.commentDelete(this.currentid,commentid).subscribe(response => {
+      this.getTopicInfo();
+    });
   }
 
   isCurrentUser(authorid){

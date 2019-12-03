@@ -4,7 +4,15 @@
   <mat-card-header>
     <mat-card-title>Login</mat-card-title>
   </mat-card-header>
-  
+
+  <mat-form-field>
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="selectedIdentity" required>
+      <mat-option value="user">User</mat-option>
+      <mat-option value="admin">Admin</mat-option>
+    </mat-select>
+  </mat-form-field>
+
     <mat-form-field>
         <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
     </mat-form-field>

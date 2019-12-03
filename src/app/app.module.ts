@@ -55,6 +55,11 @@ import { AccountInterceptor } from './service/account-interceptor';
 import { CreatecommentDialogComponent } from './component/dialog/createcomment-dialog/createcomment-dialog.component';
 import { EdittopicDialogComponent } from './component/dialog/edittopic-dialog/edittopic-dialog.component';
 import { EditcommentDialogComponent } from './component/dialog/editcomment-dialog/editcomment-dialog.component';
+import { UsertopicsComponent } from './component/user/usertopics/usertopics.component';
+import { TabUserComponent } from './component/user/tab-user/tab-user.component';
+import { UsercommentsComponent } from './component/user/usercomments/usercomments.component';
+import { AdminsearchComponent } from './component/admin/adminsearch/adminsearch.component';
+import { DailyactivenessComponent } from './component/admin/dailyactiveness/dailyactiveness.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +75,11 @@ import { EditcommentDialogComponent } from './component/dialog/editcomment-dialo
     CreatecommentDialogComponent,
     EdittopicDialogComponent,
     EditcommentDialogComponent,
+    UsertopicsComponent,
+    TabUserComponent,
+    UsercommentsComponent,
+    AdminsearchComponent,
+    DailyactivenessComponent,
     
   ],
   imports: [

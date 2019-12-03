@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/service/account.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +10,7 @@ import { AccountService } from 'src/app/service/account.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(public accountService: AccountService) { }
+  constructor(public accountService: AccountService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -19,10 +21,12 @@ export class SignupComponent implements OnInit {
       return;
     this.accountService.createUser(username, password, birth, description).subscribe(
       response => {
-        console.log('succeed',response)
+        this.router.navigate(["/topics"]);
     },
     err => {
-      console.log(err)
+      this.snackBar.open('username exists', '', {
+        duration: 2000,
+      });
     }
     );
   }

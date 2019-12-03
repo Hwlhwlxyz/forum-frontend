@@ -24,4 +24,12 @@ export class InfoService {
     this.userid = this.accountService.getUserId();
     return this.http.put(this.infoURL + '/' + this.userid, infodata);
   }
+
+  getUserPosts() {
+    return this.http.get(this.infoURL + '/' + this.userid + '/posts');
+  }
+
+  getUserComments() {
+    return this.http.get(this.infoURL + '/' + this.userid + '/comments');
+  }
 }
