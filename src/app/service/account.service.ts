@@ -63,7 +63,10 @@ export class AccountService {
         this.saveAccountData(token, expirationDate, this.userId, this.isAdmin);
         this.router.navigate(['/topics']);
       }
-    })
+    },
+    error => {
+      this.statusListener.next(false);
+    });
   }
 
   adminLogin(username, password) {
@@ -83,6 +86,9 @@ export class AccountService {
         this.saveAccountData(token, expirationDate, this.userId, this.isAdmin);
         this.router.navigate(['/topics']);
       }
+    },
+    error => {
+      this.statusListener.next(false);
     })
   }
 

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AccountService } from 'src/app/service/account.service';
+import { MatSnackBar } from '@angular/material';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -7,27 +9,33 @@ import { AccountService } from 'src/app/service/account.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   username: String;
   password: String;
   selectedIdentity = "user";
-  constructor(public accountService: AccountService) { }
+  authStatusSub: Subscription;
+  constructor(public accountService: AccountService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.authStatusSub = this.accountService.getStatusListener().subscribe(authStatus => {
+      if (!authStatus) {
+        this.snackBar.open('incorrect username or password', '', {
+          duration: 2000,
+        });
+      }
+    });
   }
 
   login() {
     if (this.selectedIdentity==="user"){
-      let r = this.accountService.login(this.username, this.password);
-      console.log(r);
-      return r;
+      this.accountService.login(this.username, this.password);
     }
     if(this.selectedIdentity==="admin"){
-      let r = this.accountService.adminLogin(this.username, this.password);
-      return r;
+      this.accountService.adminLogin(this.username, this.password);
     }
-   
   }
 
-
+  ngOnDestroy() {
+    this.authStatusSub.unsubscribe();
+  }
 }
