@@ -1,7 +1,6 @@
 <mat-toolbar>
     <span>forum</span>
 </mat-toolbar>
-
 <button mat-button [routerLink]="['/topics']">Topics</button>
 <button *ngIf="userIsAuth" mat-button [routerLink]="['/userinfo']">Profile</button>
 
