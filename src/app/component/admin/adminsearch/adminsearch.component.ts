@@ -9,7 +9,14 @@ export class AdminsearchComponent implements OnInit {
 
   constructor() { }
 
+  searchUserValue = ''
+
   ngOnInit() {
+  }
+
+
+  searchUser(value: string) {
+    this.searchUserValue = value.trim();
   }
 
 }

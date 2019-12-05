@@ -1,1 +1,6 @@
 <p>adminsearch works!</p>
+
+<mat-form-field>
+    <input matInput (keyup)="searchUser($event.target.value)" placeholder="search user">
+  </mat-form-field>
+<p>{{searchUserValue}}</p>
