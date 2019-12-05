@@ -13,6 +13,7 @@ export class AdminsearchComponent implements OnInit {
 
   constructor(private infoService: InfoService, private router: Router, private topicService: TopicService) { }
 
+  columnsToDisplay = ['title', 'content' , 'tags', 'author', 'timestamp', 'delete'];
   dataSource = new MatTableDataSource < any > ();
   @ViewChild(MatPaginator, {
     static: true
@@ -50,6 +51,7 @@ export class AdminsearchComponent implements OnInit {
     this.infoService.adminSearchUser(username).subscribe((response:[]) => {
       this.topics = response;
       this.dataSource.data = this.topics;
+      console.log(this.dataSource.data);
     });
   }
 
