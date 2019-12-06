@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
-import {DatePipe} from "@angular/common"
 import { InfoService } from 'src/app/service/info.service';
 @Component({
   selector: 'app-dailyactiveness',
@@ -14,6 +13,20 @@ export class DailyactivenessComponent implements OnInit {
 
   public barChartOptions: ChartOptions = {
     responsive: true,
+    scales: {
+      yAxes: [{
+         scaleLabel: {
+            display: true,
+            labelString: 'count'
+         }
+      }],
+      xAxes: [{
+        scaleLabel: {
+           display: true,
+           labelString: 'date(Month/Date)'
+        }
+     }]
+   }
   };
 
   public barChartLabels: Label[] = [];
@@ -22,7 +35,7 @@ export class DailyactivenessComponent implements OnInit {
   public barChartPlugins = [];
 
   public barChartData: ChartDataSets[] = [
-    { data: [0,0,0,0,0,0,0], label: 'count' },
+    { data: [0,0,0,0,0,0,0], label: 'Daily Activeness' },
   ];
   
   ngOnInit() {
@@ -33,7 +46,7 @@ export class DailyactivenessComponent implements OnInit {
 
   getPrevSevenDays(arg="getTime"){
     let result = [];
-    let dayPointer = new Date();
+    let dayPointer = new Date(new Date().setHours(0,0,0,0));
     dayPointer.setDate(dayPointer.getDate()-7)
 
     for(let i = 0 ; i < 7 ; i ++){
@@ -51,10 +64,6 @@ export class DailyactivenessComponent implements OnInit {
   }
 
   getDailyActiveness() {
-    let dayPointer = new Date();
-    let result = {};
-    dayPointer.setDate(dayPointer.getDate() - 7);
-    let startDay = new Date(dayPointer);
     let daysList = this.getPrevSevenDays();
     for(let i = 0 ; i < 7 ; i ++){ 
       this.infoService.dailyActiveness(daysList[i]).subscribe(response => {
@@ -64,7 +73,7 @@ export class DailyactivenessComponent implements OnInit {
       });
     }
 
-    return result;
+    return this.barChartData[0].data;
   }
 
 }
