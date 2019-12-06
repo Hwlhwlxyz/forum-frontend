@@ -26,7 +26,6 @@ export class CreatecommentDialogComponent implements OnInit {
   ngOnInit() {
     console.log(this.data)
     this.topicId = this.data['topicId'];
-    this.accountService.getUserinfo();
   }
 
 
