@@ -47,11 +47,9 @@ export class AdminsearchComponent implements OnInit {
   getUserPosts(username) {
     if (username == "")
       return;
-    console.log(username);
     this.infoService.adminSearchUser(username).subscribe((response:[]) => {
       this.topics = response;
       this.dataSource.data = this.topics;
-      console.log(this.dataSource.data);
     });
   }
 

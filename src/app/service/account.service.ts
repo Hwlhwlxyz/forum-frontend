@@ -163,10 +163,6 @@ export class AccountService {
     };
   }
 
-  getUserinfo(){
-    return {name:"name"};
-  }
-
   constructor(public http: HttpClient, private router: Router) { }
 }
 

@@ -43,7 +43,6 @@ export class InfoService {
 
   dailyActiveness(timestamp) {
     this.userid = this.accountService.getUserId();
-    console.log(this.userid);
     return this.http.get(this.adminInfoURL + '/' + this.userid + '/search/' + timestamp);
   }
 }

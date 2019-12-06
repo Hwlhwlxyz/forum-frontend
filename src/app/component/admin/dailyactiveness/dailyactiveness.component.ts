@@ -52,7 +52,7 @@ export class DailyactivenessComponent implements OnInit {
     for(let i = 0 ; i < 7 ; i ++){
       dayPointer.setDate(dayPointer.getDate() + 1);
       this.infoService.dailyActiveness(dayPointer.getTime()).subscribe(response => {
-        var count = response;
+        var count = response["count"];
         result.push(count);
       });
     }
