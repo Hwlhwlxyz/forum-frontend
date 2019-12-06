@@ -1,0 +1,29 @@
+.center{
+    display:table;
+    margin:0 auto;
+}
+table{
+    margin:0 auto;
+    width:98%;
+}
+mat-paginator{
+    margin:0 auto;
+    width:98%; 
+}
+th{
+    font-size:18px;
+}
+.create_comment{
+    margin:auto;
+    width:10%;
+}
+mat-card-header{
+    border:0.5px solid;
+}
+mat-card-content{
+    padding:10px;
+}
+mat-card{
+    margin:0 auto;
+    width:98%; 
+}

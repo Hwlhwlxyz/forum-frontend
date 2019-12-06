@@ -1,12 +1,10 @@
 <app-navigator></app-navigator>
 <br>
-<button *ngIf="userIsAuth && !userIsAdmin" mat-raised-button color="primary" (click)="open_createtopicDialog()">Create Topic</button>
-
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="search">
+<mat-form-field class="center grid-cell">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
 </mat-form-field>
 
-<mat-form-field class="example-chip-list">
+<mat-form-field class="example-chip-list center">
   <mat-chip-list #chipList aria-label="Filter By Tag">
     <mat-chip  *ngIf="selectedTag" [selectable]="selectable"
              [removable]="removable" (removed)="remove(fruit)">
@@ -20,7 +18,9 @@
            (matChipInputTokenEnd)="add($event)">
   </mat-chip-list>
 </mat-form-field>
-
+<div class="create_topic">
+  <button *ngIf="userIsAuth && !userIsAdmin" mat-raised-button color="primary" (click)="open_createtopicDialog()">Create Topic</button>
+</div><br>
 
 
 <table mat-table [dataSource]="dataSource" matSort>

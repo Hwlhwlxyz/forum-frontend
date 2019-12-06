@@ -1,10 +1,11 @@
 <app-navigator></app-navigator>
 <mat-card>
   <mat-card-header>
-    <mat-card-title>{{topicInfo.title}}</mat-card-title>
-    <mat-card-subtitle>{{topicInfo.author}}</mat-card-subtitle>
+    <mat-card-title>title: {{topicInfo.title}}</mat-card-title>
+    <mat-card-subtitle>author: {{topicInfo.author}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
+    <h4>content:</h4>
     <p>{{topicInfo.content}}</p>
     <div *ngFor="let image of images">
       <img src="{{image}}">
@@ -16,9 +17,7 @@
     <button *ngIf="isCurrentUser(topicInfo.authorid)" mat-raised-button color="accent" (click)="open_editTopicDialog()">edit</button>
   </mat-card-actions>
 </mat-card>
-
-<button *ngIf="userIsAuth && !userIsAdmin" mat-raised-button color="primary" (click)="open_createCommentDialog()">Create Comment</button>
-
+<br>
 <table mat-table [dataSource]="dataSource" matSort>
 
 
@@ -59,4 +58,8 @@
   
   </table>
   <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+<br>
+<div class="create_comment">
+  <button *ngIf="userIsAuth && !userIsAdmin" mat-raised-button color="primary" (click)="open_createCommentDialog()">Create Comment</button>
+</div>
   
