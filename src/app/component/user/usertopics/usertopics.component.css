@@ -1,0 +1,19 @@
+.center{
+    display:table;
+    margin:0 auto;
+}
+table{
+    margin:0 auto;
+    width:98%;
+}
+mat-paginator{
+    margin:0 auto;
+    width:98%; 
+}
+th{
+    font-size:18px;
+}
+.create_topic{
+    margin:auto;
+    width:10%;
+}
