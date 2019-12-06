@@ -71,14 +71,14 @@ export class AccountService {
 
   adminLogin(username, password) {
     const adminLoginData: LoginData = {username: username, password: password};
-    this.http.post<{token: string, expiresIn: number, userId: string, isAdmin: boolean}>(this.apiBaseURL+"/loginSignup/adminLogin", adminLoginData).subscribe(response => {
+    this.http.post<{token: string, expiresIn: number, adminId: string, isAdmin: boolean}>(this.apiBaseURL+"/loginSignup/adminLogin", adminLoginData).subscribe(response => {
       const token = response.token;
       this.token = token;
       if (token) {
         const expiresDuration = response.expiresIn;
         this.setTimer(expiresDuration);
         this.isAuth = true;
-        this.userId = response.userId;
+        this.userId = response.adminId;
         this.isAdmin = response.isAdmin;
         this.statusListener.next(true);
         const now = new Date();

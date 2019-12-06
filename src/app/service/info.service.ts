@@ -27,18 +27,23 @@ export class InfoService {
   }
 
   getUserPosts() {
+    this.userid = this.accountService.getUserId();
     return this.http.get(this.infoURL + '/' + this.userid + '/posts');
   }
 
   getUserComments() {
+    this.userid = this.accountService.getUserId();
     return this.http.get(this.infoURL + '/' + this.userid + '/comments');
   }
 
   adminSearchUser(username) {
+    this.userid = this.accountService.getUserId();
     return this.http.get(this.adminInfoURL + '/' + this.userid + '/' + username + '/posts');
   }
 
   dailyActiveness(timestamp) {
-    return this.http.get(this.adminInfoURL + '/search/' + timestamp);
+    this.userid = this.accountService.getUserId();
+    console.log(this.userid);
+    return this.http.get(this.adminInfoURL + '/' + this.userid + '/search/' + timestamp);
   }
 }
