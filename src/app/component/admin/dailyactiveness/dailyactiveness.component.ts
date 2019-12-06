@@ -17,7 +17,7 @@ export class DailyactivenessComponent implements OnInit {
       yAxes: [{
          scaleLabel: {
             display: true,
-            labelString: 'count'
+            labelString: 'daily activness'
          }
       }],
       xAxes: [{
