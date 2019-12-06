@@ -22,38 +22,45 @@ export class DailyactivenessComponent implements OnInit {
   public barChartPlugins = [];
 
   public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Label A' },
+    { data: [0,0,0,0,0,0,0], label: 'count' },
   ];
   
   ngOnInit() {
     console.log(this.getPrevSevenDays())
-    this.barChartLabels = this.getPrevSevenDays();
-    this.barChartData[0].data = this.getDailyActiveness();
+    this.barChartLabels = this.getPrevSevenDays("getMonthAndDate");
+    this.getDailyActiveness();
   }
 
-  getPrevSevenDays(){
+  getPrevSevenDays(arg="getTime"){
     let result = [];
     let dayPointer = new Date();
     dayPointer.setDate(dayPointer.getDate()-7)
 
     for(let i = 0 ; i < 7 ; i ++){
       dayPointer.setDate(dayPointer.getDate() + 1);
-      result.push((dayPointer.getMonth()+1) +'/'+ dayPointer.getDate())
+      if(arg==="getMonthAndDate"){
+        result.push((dayPointer.getMonth()+1) +'/'+ dayPointer.getDate())
+      }
+      if(arg==="getTime"){
+        result.push(dayPointer.getTime())
+      }
+      
     }
-    console.log(dayPointer)
+    //console.log(result)
     return result;
   }
 
   getDailyActiveness() {
     let dayPointer = new Date();
-    let result = [];
+    let result = {};
     dayPointer.setDate(dayPointer.getDate() - 7);
-
-    for(let i = 0 ; i < 7 ; i ++){
-      dayPointer.setDate(dayPointer.getDate() + 1);
-      this.infoService.dailyActiveness(dayPointer.getTime()).subscribe(response => {
-        var count = response["count"];
-        result.push(count);
+    let startDay = new Date(dayPointer);
+    let daysList = this.getPrevSevenDays();
+    for(let i = 0 ; i < 7 ; i ++){ 
+      this.infoService.dailyActiveness(daysList[i]).subscribe(response => {
+        let count = response["count"];
+        this.barChartData[0].data[i] = count;
+        console.log(this.barChartData[0].data[i])
       });
     }
 
