@@ -30,6 +30,7 @@
     <mat-form-field class="example-full-width">
       <input [(ngModel)]="image" name="image" matInput placeholder="image's link">
     </mat-form-field>
+    <button mat-raised-button (click)="deleteImageLink(image)" color="primary">Delete</button>
     <br>
   </div>
   <mat-form-field class="example-full-width">

@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { ChartsModule } from 'ng2-charts';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material';
@@ -126,6 +128,8 @@ import { DailyactivenessComponent } from './component/admin/dailyactiveness/dail
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    //others
+    ChartsModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AccountInterceptor, multi: true}],
   entryComponents: [CreatetopicDialogComponent, CreatecommentDialogComponent, EdittopicDialogComponent, EditcommentDialogComponent],

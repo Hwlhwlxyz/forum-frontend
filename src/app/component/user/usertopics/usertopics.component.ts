@@ -22,6 +22,8 @@ export class UsertopicsComponent implements OnInit {
   constructor(private infoService: InfoService, private router: Router) { }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     this.getAllTopics();
   }
 

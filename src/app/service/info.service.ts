@@ -8,6 +8,7 @@ import { AccountService } from './account.service';
 })
 export class InfoService {
   infoURL =  environment.apiBaseURL+"/info";
+  adminInfoURL = environment.apiBaseURL+"/adminInfo";
   userid
   constructor(public http: HttpClient, public accountService: AccountService) {}
 
@@ -31,5 +32,13 @@ export class InfoService {
 
   getUserComments() {
     return this.http.get(this.infoURL + '/' + this.userid + '/comments');
+  }
+
+  adminSearchUser(username) {
+    return this.http.get(this.adminInfoURL + '/' + this.userid + '/' + username + '/posts');
+  }
+
+  dailyActiveness(timestamp) {
+    return this.http.get(this.adminInfoURL + '/search/' + timestamp);
   }
 }

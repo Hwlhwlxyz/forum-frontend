@@ -72,6 +72,14 @@ export class CreatetopicDialogComponent implements OnInit {
     this.imagelink = '';
   }
 
+  deleteImageLink(link){
+    const index = this.images.indexOf(link);
+
+    if (index >= 0) {
+      this.images.splice(index, 1);
+    }
+  }
+
 
   invalidImagelink(){
     return (this.imagelink.match(/\.(jpeg|jpg|gif|png)$/) == null);
