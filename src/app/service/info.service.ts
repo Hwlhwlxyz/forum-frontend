@@ -37,4 +37,8 @@ export class InfoService {
   adminSearchUser(username) {
     return this.http.get(this.adminInfoURL + '/' + this.userid + '/' + username + '/posts');
   }
+
+  dailyActiveness(timestamp) {
+    return this.http.get(this.adminInfoURL + '/search/' + timestamp);
+  }
 }
