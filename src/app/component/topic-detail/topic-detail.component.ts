@@ -147,8 +147,8 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
   addCommentLikes(commentid) {
     this.topicService.commentLike(this.topicId, commentid).subscribe(response => {
       this.commentlikes = response['likes'];
+      this.getTopicInfo();
     });
-    this.getTopicInfo();
   }
 
   deleteComment(commentid) {
